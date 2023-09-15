@@ -1,6 +1,5 @@
 # Demo
 
-## Disclaimer
 This demo is created for educational purpose only.
 
 
@@ -29,4 +28,3 @@ Copy `config.json.example` as `config.json` and set the appropriate variables.
       * Unix with bash: `source .env/bin/activate`)
    2. Install dependencies with `pip install -r requirements.txt`
    3. Test running the app `python src/main.py` and see if everything is correctly configured.
-

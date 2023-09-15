@@ -1,4 +1,4 @@
 services:
-  login:
+  demo-login:
     build: .
     restart: unless-stopped
