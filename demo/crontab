@@ -1,0 +1,2 @@
+# UTC time, runs at daily login reset
+1 16 * * * /app/run.sh

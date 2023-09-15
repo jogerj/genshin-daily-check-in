@@ -1,0 +1,23 @@
+{
+    "discord_webhook_url": "https://discord.com/api/webhooks/1234/foo",
+    "delay": 60,
+    "users": [
+        {
+            "username": "JogerJ",
+            "discord_id": 123456789123456789,
+            "region": "os",
+            "cookie": "paste cookies here"
+        },
+        {
+            "username": "JogerJ Alt",
+            "region": "cn",
+            "cookie": "paste cookies here"
+        },
+        {
+            "username": "inactive user",
+            "region": "os",
+            "auto_claim": false,
+            "cookie": "the auto_claim flag is optional. If false, the user will be skipped"
+        }
+    ]
+}
