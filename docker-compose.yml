@@ -1,4 +1,6 @@
 services:
-  demo-login:
-    build: .
+  daily-login:
+    image: jogerj/genshin-daily-login:latest
     restart: unless-stopped
+    volumes:
+      - ${CONFIG_JSON}:/app/config.json

@@ -1,7 +1,7 @@
 .gitignore
 .dockerignore
 .vscode
-config.json.example
+config.json*
 README.md
 
 # Python
