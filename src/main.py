@@ -14,14 +14,14 @@ async def main():
         level=logging.INFO,
         format='%(asctime)s | %(levelname)s | %(message)s',
         datefmt='%Y-%m-%dT%H:%M:%S%z')
-    logger = logging.getLogger('genshin-daily-sign-in')
+    logger = logging.getLogger('genshin-daily-check-in')
     config = GenshinConfig.instance()
     users: List[User] = config.users
 
     for i, user in enumerate(users):
         if (not user.auto_claim):
             user.success = False
-            user.message = "Auto-claim skipped"
+            user.message = "Reminder to claim your daily reward!"
         else:
             try:
                 client = genshin.Client(
@@ -30,7 +30,7 @@ async def main():
                 client.set_cookies(user.cookie)
                 reward = await client.claim_daily_reward()
             except genshin.AlreadyClaimed:
-                user.success = False
+                user.success = True
                 user.message = "Daily reward already claimed"
             except genshin.DailyGeetestTriggered as e:
                 user.success = False
