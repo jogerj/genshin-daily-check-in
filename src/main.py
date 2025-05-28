@@ -6,7 +6,6 @@ from config import GenshinConfig
 from user import User
 from notify import Notify
 from typing import Dict, List
-from time import sleep
 import logging
 
 
@@ -33,9 +32,12 @@ async def main():
             except genshin.AlreadyClaimed:
                 user.success = False
                 user.message = "Daily reward already claimed"
-            except genshin.errors.GeetestTriggered as e:
+            except genshin.DailyGeetestTriggered as e:
                 user.success = False
                 user.message = "Geetest triggered"
+            except (genshin.CookieException, genshin.InvalidCookies) as e:
+                user.success = False
+                user.message = f"Cookie issue: {e}"
             except Exception as e:
                 user.success = False
                 user.message = f"Failed to claim daily reward! Unknown error:\n    {e}!"
@@ -46,7 +48,8 @@ async def main():
             logger.info(f"{user.username} ({user.region}): {user.message}")
         else:
             logger.warning(f"{user.username} ({user.region}): {user.message}")
-        sleep(config.delay) if (user.auto_claim and i < len(users) - 1) else None
+        if (user.auto_claim and i < len(users) -1):
+            await asyncio.sleep(config.delay)
 
     if (config.discord_webhook):
         logger.info("Sending Discord notification")
@@ -56,4 +59,4 @@ async def main():
         logger.info("No Discord webhook set, not sending any notifications")
 
 if (__name__ == '__main__'):
-    asyncio.get_event_loop().run_until_complete(main())
+    asyncio.run(main())
