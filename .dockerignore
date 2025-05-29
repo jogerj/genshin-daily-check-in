@@ -1,7 +1,10 @@
 .gitignore
 .dockerignore
 .vscode
+.gitattributes
 config.json*
+docker-compose.yml
+Dockerfile
 README.md
 
 # Python
