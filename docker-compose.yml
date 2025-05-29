@@ -1,6 +1,6 @@
 services:
-  daily-login:
-    image: jogerj/genshin-daily-login:latest
+  daily-check-in:
+    image: jogerj/genshin-daily-check-in:latest
     restart: unless-stopped
     volumes:
-      - ${CONFIG_JSON}:/app/config.json
+      - ./config.json:/app/config.json
